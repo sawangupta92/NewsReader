@@ -1,0 +1,73 @@
+<html>
+{%load bootstrap%}
+{% bootstrap_css %}
+{%bootstrap_js%}
+<head>
+<script type="text/javascript">
+function edit(){
+	var t=document.getElementById("unhid")
+	t.style.visibility='visible'
+	// alert(t.value)
+}
+</script>
+<script type="text/javascript" src='/static/js/jquery.js'></script>
+	<script type="text/javascript" src="/static/js/application.js"></script>
+	<script type="text/javascript" src="/static/js/bootstrap-tooltip.js"></script>
+	<script type="text/javascript" src="/static/js/annotator.min.js"></script>
+<script type="text/javascript" src='/static/js/jquery.textHighlighter.js'></script>
+<script type="text/javascript" src='/static/js/rangy-core.js'></script>
+<script type="text/javascript">
+$(document).ready(function() {
+          $('#sandbox').textHighlighter();
+          $('#color-picker div.color').click(function() {
+              var color = $(this).css('background-color');
+              $('#sandbox').getHighlighter().setColor(color);
+          });
+      });
+function f(){
+	var t=document.getElementById('hb')
+	var x=document.getElementsByName('jq')
+	// alert(t[0].innerHTML)
+	t.value=x[0].innerHTML;
+	// alert(x.innerHTML)
+}
+</script>
+<style type="text/css">
+.hid{
+	visibility: hidden;
+}
+</style>
+	<link rel="stylesheet" type="text/css" href="/static/js/annotator.min.css">
+</head>
+<body>
+	<form method='post' action='/save'>
+<div class='offset span12 highlighter-context' id='sandbox'>
+	<div id='check'>
+	<p id='cont' name='jq' onclick='f()'>
+		{{view.description|safe}}
+		</p>
+	</div>
+<input type='hidden'  value={{view.id}} name='feed_id'>
+<textarea class='hid' id='hb' hidden name='file_content'></textarea>
+<br>
+<br><br>
+<button class='btn btn-large btn-primary' onclick='f()'>
+	SAVE
+</button>
+</form>
+<a href="/feed_list/">
+<div class='offset16 btn btn-large btn-primary'>
+	BACK
+</div>
+</a>
+<button class='btn btn-large btn-primary' onclick='edit()'>
+	EDIT
+</button>
+<br><br><br>
+</div>
+</body>
+<script>
+  $("#cont").annotator()
+</script>
+
+</html>

@@ -1,0 +1,21 @@
+{%load bootstrap%}
+{% bootstrap_css %}
+{% bootstrap_js %}
+<div class='offset span12'>
+<table class='table table-bordered table-striped '>
+	<tr>
+		<th>Description</th>
+		<th>Date</th>
+	</tr>
+{%for k in l%}
+<tr>
+	<td>
+  		<a href="/view_feed/{{k.id}}">{{k.description}}</a>
+	</td>
+	<td>
+		{{k.date}}
+	</td>
+</tr>
+{%endfor%}
+</table>
+</div>

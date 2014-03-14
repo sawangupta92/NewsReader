@@ -1,10 +1,16 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls.defaults import *
+from django.conf import settings
+from django.views.generic import TemplateView
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
 
 urlpatterns = patterns('',
+	url(r'^feed_list','newsreader.nread.views.feed_list'),
+	url(r'^view_feed/(?P<name>.*)$','newsreader.nread.views.view_feed'),
+	url(r'^save','newsreader.nread.views.save'),
     # Examples:
     # url(r'^$', 'newsreader.views.home', name='home'),
     # url(r'^newsreader/', include('newsreader.foo.urls')),
@@ -15,3 +21,4 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 )
+urlpatterns += staticfiles_urlpatterns()
