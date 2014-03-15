@@ -3,9 +3,13 @@ This is a newsreader application.
 It has following features
 
 1) It Showcase the list of articles with the headline, date in a neat vertically scrollable list
+
 2) On clicking an article, the clean text view of the article opens and one can close it to go back to the original list view
+
 3) One can annotate any part of the text of the article - Highlight and/ or Comment specific parts of the text. The annotations are stored, and reappear next time when opening it.
+
 4) It uses first 5 words of the description as the "headline" field
+
 5) feed list is sorted according to the date in descending order.
 
 SETUP:-
