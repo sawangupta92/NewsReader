@@ -3,29 +3,15 @@
 {% bootstrap_css %}
 {%bootstrap_js%}
 <head>
+	<script type="text/javascript" src='/static/js/jquery.js'></script>
+	<script type="text/javascript" src="/static/js/annotator-full.min.js"></script>
+	<script type="text/javascript" src="/static/js/annotator.offline.min.js"></script>
 <script type="text/javascript">
-function edit(){
-	var t=document.getElementById("unhid")
-	t.style.visibility='visible'
-	// alert(t.value)
-}
 function ano(){
   var t=document.getElementById('ao')
   var x=document.getElementsByName('jq')
   t.value=x[0].innerHTML;
 }
-</script>
-<script type="text/javascript" src='/static/js/jquery.js'></script>
-<script type="text/javascript" src='/static/js/jquery.textHighlighter.js'></script>
-<script type="text/javascript" src='/static/js/rangy-core.js'></script>
-<script type="text/javascript">      
-$(document).ready(function() {
-          $('#sandbox').textHighlighter();
-          $('#color-picker div.color').click(function() {
-              var color = $(this).css('background-color');
-              $('#sandbox').getHighlighter().setColor(color);
-          });
-      });
 function f(){
 	var t=document.getElementById('hb')
 	var x=document.getElementsByName('jq')
@@ -37,10 +23,9 @@ function f(){
 	visibility: hidden;
 }
 </style>
+	<link rel="stylesheet" type="text/css" href="/static/js/annotator.min.css">
 </head>
 <body>
-	<form method='post' action='/save'>
-<div class='offset span12 highlighter-context' id='sandbox'>
 	<p id='content' name='jq'>
 		{{view.description|safe}}
 		</p>
@@ -48,26 +33,39 @@ function f(){
 <textarea class='hid' id='hb' hidden name='file_content'></textarea>
 <br>
 <br><br>
-<button class='btn btn-large btn-primary' onclick='f()'>
-	SAVE
-</button>
-</form>
 <a href="/feed_list/">
 <div class='offset16 btn btn-large btn-primary'>
 	BACK
 </div>
 </a>
-<div>
-  <br>
-<form method='post' action='/annotate'>
+<form method='post' action='/view_feed'>
 <input type='hidden'  value={{view.id}} name='feed_id'>
 <textarea class='hid' id='ao' hidden name='file_content'></textarea>
 <button class='btn btn-large btn-primary' onclick='ano()'>
-  ANNOTATE
-</button>
+HIGHLIGHT
 </form>
+
+</button>
 <br><br><br>
 </div>
-</div>
 </body>
+<script type="text/javascript">
+    var content = jQuery("#content").annotator();
+    content.annotator('addPlugin', 'Offline', {
+      online:  function () {
+        jQuery("#status").text("Online");
+      },
+      offline: function () {
+        jQuery("#status").text("Offline");
+      }
+    });
+    var annotator = content.data('annotator');
+
+    jQuery("#clear-storage").click(function () {
+      if (annotator) {
+        annotator.plugins.Offline.store.clear()
+      }
+    });
+
+</script>
 </html>

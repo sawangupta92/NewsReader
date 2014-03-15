@@ -9,8 +9,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns('',
 	url(r'^feed_list','newsreader.nread.views.feed_list'),
-	url(r'^view_feed/(?P<name>.*)$','newsreader.nread.views.view_feed'),
+	url(r'^view_feed','newsreader.nread.views.view_feed'),
 	url(r'^save','newsreader.nread.views.save'),
+    url(r'^annotate','newsreader.nread.views.annotate'),
     # Examples:
     # url(r'^$', 'newsreader.views.home', name='home'),
     # url(r'^newsreader/', include('newsreader.foo.urls')),

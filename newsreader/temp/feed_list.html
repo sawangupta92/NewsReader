@@ -10,7 +10,13 @@
 {%for k in l%}
 <tr>
 	<td>
-  		<a href="/view_feed/{{k.id}}">{{k.description}}</a>
+		<form method='POST' action='view_feed'>
+		<button class='btn btn-link'>
+			{{k.description}}
+		</button>
+		<input type='hidden' value={{k.id}} name='feed_id'>
+		</form>
+		  		<!-- <a href="/view_feed" id={{k.id}}>{{k.description}}</a> -->
 	</td>
 	<td>
 		{{k.date}}
@@ -18,4 +24,8 @@
 </tr>
 {%endfor%}
 </table>
+
+			<input>
+<button class='btn btn-large btn-primary' onclick='ano()'>
+
 </div>
